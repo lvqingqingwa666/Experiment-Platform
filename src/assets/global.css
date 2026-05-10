@@ -1,0 +1,439 @@
+/* ===== CSS Variables - Mind Growth Lab Inspired Theme ===== */
+:root {
+  /* Primary palette */
+  --brand-royal: #1e3b6b;
+  --brand-blue: #2c5cc5;
+  --brand-teal: #3b8fa8;
+  --brand-light: #5b8def;
+  --brand-lighter: #e8f0fe;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #1a3558 0%, #2c5cc5 40%, #3b8fa8 100%);
+  --gradient-card: linear-gradient(135deg, #2c5cc5 0%, #4a7cf0 100%);
+  --gradient-teal: linear-gradient(135deg, #2c5cc5 0%, #3b8fa8 100%);
+  --gradient-light: linear-gradient(180deg, #eef3fb 0%, #f8fbff 100%);
+  --gradient-glass: radial-gradient(circle at top left, rgba(79, 110, 247, 0.15), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(59, 143, 168, 0.08), transparent 40%);
+
+  /* Surfaces */
+  --surface-card: rgba(255, 255, 255, 0.92);
+  --surface-glass: rgba(255, 255, 255, 0.78);
+  --surface-muted: #f6f9fd;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 3px rgba(30, 59, 107, 0.06);
+  --shadow-sm: 0 4px 12px rgba(30, 59, 107, 0.08);
+  --shadow-md: 0 8px 28px rgba(30, 59, 107, 0.1);
+  --shadow-lg: 0 18px 48px rgba(30, 59, 107, 0.13);
+  --shadow-xl: 0 30px 72px rgba(20, 50, 100, 0.16);
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* Typography */
+  --font-sans: 'Inter', 'SF Pro Text', 'PingFang SC', 'Microsoft YaHei', system-ui,
+    -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.22, 0.87, 0.36, 1.02);
+  --ease-smooth: cubic-bezier(0.45, 0, 0.25, 1);
+}
+
+/* ===== Global Reset ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1e293b;
+  background: var(--gradient-light);
+}
+
+/* ===== Noise Texture Overlay ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(44, 92, 197, 0.18);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(44, 92, 197, 0.32);
+}
+
+/* ===== Element Plus Theme Overrides ===== */
+
+/* Primary color */
+:root {
+  --el-color-primary: #2c5cc5;
+  --el-color-primary-light-3: #5b8def;
+  --el-color-primary-light-5: #8aaff7;
+  --el-color-primary-light-7: #b8d0fb;
+  --el-color-primary-light-8: #d4e2fc;
+  --el-color-primary-light-9: #eaf1fd;
+  --el-color-primary-dark-2: #1e4a9e;
+}
+
+/* Buttons */
+.el-button {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500;
+  transition: all 0.25s var(--ease-smooth);
+}
+
+/* Gradient only on default-size primary solid buttons */
+.el-button--primary:not(.el-button--small):not(.is-plain):not(.is-link) {
+  background: var(--gradient-card) !important;
+  border: none !important;
+  box-shadow: var(--shadow-xs);
+}
+
+.el-button--primary:not(.el-button--small):not(.is-plain):not(.is-link):hover {
+  box-shadow: 0 4px 16px rgba(44, 92, 197, 0.35);
+  transform: translateY(-1px);
+}
+
+.el-button--primary:not(.el-button--small):not(.is-plain):not(.is-link):active {
+  transform: translateY(0);
+}
+
+/* Small & plain primary: solid color, no gradient */
+.el-button--small.el-button--primary,
+.el-button--primary.is-plain {
+  background: var(--el-color-primary) !important;
+  background-image: none !important;
+}
+
+.el-button--small.el-button--primary:hover,
+.el-button--primary.is-plain:hover {
+  background: var(--el-color-primary-light-3) !important;
+  background-image: none !important;
+}
+
+/* Plain buttons: ensure visible border */
+.el-button--primary.is-plain {
+  background: var(--el-color-primary-light-9) !important;
+  background-image: none !important;
+  border-color: var(--el-color-primary-light-5) !important;
+  color: var(--el-color-primary) !important;
+}
+
+.el-button--primary.is-plain:hover {
+  background: var(--el-color-primary-light-7) !important;
+  background-image: none !important;
+}
+
+/* Cards */
+.el-card {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid rgba(210, 221, 239, 0.6) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: box-shadow 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+  backdrop-filter: blur(8px);
+  background: var(--surface-card) !important;
+}
+
+.el-card:hover {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.el-card__header {
+  border-bottom: 1px solid rgba(210, 221, 239, 0.4) !important;
+  padding: 18px 24px !important;
+}
+
+.el-card__body {
+  padding: 24px !important;
+}
+
+/* Inputs & Selects */
+.el-input__wrapper,
+.el-select .el-input__wrapper,
+.el-date-editor.el-input__wrapper {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 1px 3px rgba(30, 59, 107, 0.05) !important;
+  transition: all 0.25s var(--ease-smooth);
+  background: #fafcff;
+}
+
+.el-input__wrapper:hover,
+.el-select .el-input__wrapper:hover {
+  box-shadow: 0 2px 8px rgba(44, 92, 197, 0.1) !important;
+  border-color: rgba(44, 92, 197, 0.3);
+}
+
+.el-input.is-focus .el-input__wrapper,
+.el-select.is-focus .el-input__wrapper {
+  box-shadow: 0 0 0 2px rgba(44, 92, 197, 0.12) !important;
+}
+
+/* Table */
+.el-table {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.el-table th.el-table__cell {
+  background: var(--surface-muted) !important;
+  color: var(--brand-royal);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: rgba(44, 92, 197, 0.015);
+}
+
+/* Tags */
+.el-tag {
+  border-radius: 8px !important;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Dialog */
+.el-dialog {
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.el-dialog__header {
+  padding: 24px 28px 0 !important;
+}
+
+.el-dialog__body {
+  padding: 24px 28px !important;
+}
+
+/* Menu (sidebar) */
+.el-menu {
+  border-radius: var(--radius-md);
+}
+
+.el-menu-item {
+  border-radius: var(--radius-md) !important;
+  margin: 4px 10px !important;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.el-menu-item.is-active {
+  background: linear-gradient(135deg, rgba(44, 92, 197, 0.1), rgba(59, 143, 168, 0.06)) !important;
+  color: var(--brand-blue) !important;
+  font-weight: 600;
+}
+
+/* Tabs */
+.el-tabs__item {
+  font-weight: 500;
+}
+
+.el-tabs__active-bar {
+  background: var(--brand-blue) !important;
+}
+
+/* Pagination */
+.el-pagination .el-pager li.is-active {
+  background: var(--brand-blue) !important;
+  border-radius: 8px;
+}
+
+/* Progress */
+.el-progress-bar__outer {
+  border-radius: 6px !important;
+  background: rgba(44, 92, 197, 0.08);
+}
+
+/* Steps */
+.el-step__title {
+  font-weight: 600 !important;
+}
+
+.el-step__head.is-process {
+  color: var(--brand-blue) !important;
+  border-color: var(--brand-blue) !important;
+}
+
+.el-step__head.is-finish {
+  color: var(--brand-blue) !important;
+  border-color: var(--brand-blue) !important;
+}
+
+/* Divider */
+.el-divider {
+  border-top-color: rgba(210, 221, 239, 0.5);
+}
+
+/* Alert */
+.el-alert {
+  border-radius: var(--radius-md) !important;
+}
+
+/* Form */
+.el-form-item__label {
+  font-weight: 500;
+  color: var(--brand-royal);
+}
+
+/* Radio button */
+.el-radio-button__inner {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Switch */
+.el-switch.is-checked .el-switch__core {
+  background: var(--brand-blue) !important;
+  border-color: var(--brand-blue) !important;
+}
+
+/* ===== Utility Classes ===== */
+.page-container {
+  padding: 24px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--brand-royal);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: -16px 0 24px 0;
+}
+
+/* Stat card - lab style */
+.stat-card-lab {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  border: 1px solid rgba(210, 221, 239, 0.5);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.35s var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card-lab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-card);
+  border-radius: 3px 3px 0 0;
+}
+
+.stat-card-lab:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-card-lab .stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  background: var(--gradient-card);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.stat-card-lab .stat-label {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Gradient card */
+.gradient-card {
+  background: var(--gradient-card);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+  border: none !important;
+}
+
+.gradient-card .el-card__header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #fff;
+}
+
+/* Page header card */
+.page-header-card {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(210, 221, 239, 0.5);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Animated entry */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeInUp 0.5s var(--ease-smooth) both;
+}
+
+.animate-in-1 {
+  animation-delay: 0.05s;
+}
+.animate-in-2 {
+  animation-delay: 0.1s;
+}
+.animate-in-3 {
+  animation-delay: 0.15s;
+}
+.animate-in-4 {
+  animation-delay: 0.2s;
+}
